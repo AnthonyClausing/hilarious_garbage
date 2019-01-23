@@ -1,2 +1,2 @@
 # hilarious_garbage
-Clone of the site funnyjunk using rails and vuejs
+Clone of the site Funnyjunk using Graphql/PostgreSQL and Vuejs
