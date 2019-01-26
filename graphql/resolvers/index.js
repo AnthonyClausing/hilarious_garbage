@@ -1,4 +1,4 @@
-const postResolver = require('./events');
+const postResolver = require('./post');
 const commentResolver = require('./comment');
 const authResolver = require('./auth');
 

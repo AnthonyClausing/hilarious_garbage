@@ -1,8 +1,10 @@
 const Sequelize = require('sequelize')
+
 const db = new Sequelize(
-  process.env.DATABASE_URL || 'postgres://localhost:5432/hg_dev',{
-    logging: false,
-    dialect: 'postgres'
+  process.env.DATABASE_URL || 'hg_dev', 'postgres', 'password', {
+    host: 'localhost',
+    dialect: 'postgres',
+    logging: false
   }
 )
 
