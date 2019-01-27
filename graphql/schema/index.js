@@ -13,9 +13,8 @@ type Post {
   title: String!
   description: String!
   content: String!
-  date: String!
-  creator: User!
 }
+
 type User {
   id: ID!
   name: String!
@@ -26,8 +25,7 @@ type User {
 input PostInput {
   title: String!
   description: String!
-  text: String!
-  date: String!
+  content: String!
 }
 input UserInput {
   email: String!
