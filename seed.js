@@ -74,13 +74,24 @@ const comments = [{
     text: 'YAAAAAAAS'
 }];
 
-const seed = () => Promise.all(users.map(user => User.create(user)))
+const seed = () => {
+  return Promise.all(users.map(user => User.create(user)))
+  .then((createdUsers) => Promise.all(posts.map(post =>{
+    return Post.create({...post, userId: createdUsers[Math.floor(Math.random() * users.length)].id})
+  })))
+  .then((createdPosts) => Promise.all(comments.map(comment =>{
+    return Comment.create({...comment, postId: createdPosts[Math.floor(Math.random() * posts.length)].id, userId: Math.floor(Math.random() * 10) + 1})
+  })))
+  .catch(err => {
+    throw err 
+  })
+}
 
 const main = () => {
   console.log('Syncing db...');
   db.sync({ force: true })
     .then(() => {
-      console.log('Seeding databse...');
+      console.log('Seeding database...');
       return seed();
     })
     .catch(err => {
@@ -93,4 +104,4 @@ const main = () => {
     });
 };
 
-//main();
+main();

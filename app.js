@@ -27,7 +27,7 @@ app.use('/graphql', graphqlHttp({
   graphiql: true
 }));
 
-db.sync({force:true})
+db.sync({force:false})
   .then(() =>{
     app.listen(3000, () => {
       console.log('youre listening on port 3k')
