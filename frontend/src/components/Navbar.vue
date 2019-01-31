@@ -23,6 +23,7 @@ export default {
 <style scoped lang="scss">
 .navbar_row {
   background: rgb(51, 51, 51);
+  border: 1px solid rgb(141, 141, 141);
 }
 
 .navbar{
