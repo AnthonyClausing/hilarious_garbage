@@ -1,11 +1,13 @@
 <template>
-  <ul class="post-list">
-    <li class="post" v-for="post in posts" :key="post.id">
+<b-col>
+  <b-list-group class="post-list" horizontal>
+    <b-list-group-item class="post" v-for="post in posts" :key="post.id">
       <h1>{{ post.title }}</h1>
       <p>{{ post.content }}</p>
       <p>{{ post.description }}</p>
-    </li>
-  </ul>
+    </b-list-group-item>
+  </b-list-group>
+</b-col>
 </template>
 
 <script>
@@ -73,14 +75,17 @@ export default {
   .post-list { 
     list-style: none;
     display: flex;
-    justify-content: space-between;
-    max-width: 80%;
-    margin: auto;
-    padding: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0px 20px;
     
     & > .post {
-    color: white;
-    max-width: 30%;
+    // color: white;
+    border: 4px solid rgba(175, 175, 175, 0.5);
+    margin: 25px 10px;
+    height: 200px;
+    width: 200px;
     }
   }
 </style>

@@ -1,20 +1,20 @@
 <template>
   <b-container fluid class="home">
     <Navbar/>
-    <PostList/>
+    <PostContainer/>
   </b-container>
 </template>
 
 <script>
 // @ is an alias to /src
 import Navbar from "@/components/Navbar.vue";
-import PostList from "@/components/Posts/PostList/Postlist.vue"
+import PostContainer from "@/components/Posts/PostContainer.vue"
 
 export default {
   name: "home",
   components: {
     Navbar,
-    PostList
+    PostContainer
   }
 };
 </script>
