@@ -45,26 +45,51 @@ const users = [{
 }];
 
 const posts = [{
-    title: 'test1', 
+    title: 'test1 post', 
     description: 'this is test1', 
     content: 'what is test1?'
   },{
-    title: 'test2', 
+    title: 'test2 post', 
     description: 'this is test2', 
     content: 'what is test2?'
   },{
-    title: 'test3', 
+    title: 'test3 post', 
     description: 'this is test3', 
     content: 'what is test3?'
   },{
-    title: 'test4', 
+    title: 'test4 post', 
     description: 'this is test4', 
     content: 'what is test4?'
   },{
-    title: 'test5', 
+    title: 'test5 post', 
     description: 'this is test5', 
     content: 'what is test5?'
-}];
+  },
+  {
+    title: 'test6 post', 
+    description: 'this is test6', 
+    content: 'what is test6?'
+  },
+  {
+    title: 'test7 post', 
+    description: 'this is test7', 
+    content: 'what is test7?'
+  },
+  {
+    title: 'test8 post', 
+    description: 'this is test8', 
+    content: 'what is test8?'
+  },
+  {
+    title: 'test9 post', 
+    description: 'this is test9', 
+    content: 'what is test9?'
+  },
+  {
+    title: 'test10 post', 
+    description: 'this is test10', 
+    content: 'what is test10?'
+  }];
 
 const comments = [{
     text: 'this is wack'
@@ -72,6 +97,10 @@ const comments = [{
     text: 'this is crazy, man'
   },{
     text: 'YAAAAAAAS'
+},{
+  text: 'thanks I hate it'
+},{
+  text: 'democracy was a mistake'
 }];
 
 const seed = () => {
