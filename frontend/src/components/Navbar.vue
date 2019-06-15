@@ -2,7 +2,7 @@
   <b-row class="navbar_row">
     <b-col>
       <b-navbar>
-        <b-navbar-brand class="logo" href="/">
+        <b-navbar-brand class="logo" :to="'/'">
           <img
             height="35px"
             alt="Hilarious Garbage logo"
@@ -10,7 +10,7 @@
           />
         </b-navbar-brand>
         <b-navbar-nav>
-          <b-nav-item :href="`/user/test1`" right>USER</b-nav-item>
+          <b-nav-item :to="`/user/test1`" right>USER</b-nav-item>
         </b-navbar-nav>
       </b-navbar>
     </b-col>

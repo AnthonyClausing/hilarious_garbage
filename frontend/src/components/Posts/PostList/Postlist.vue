@@ -3,7 +3,7 @@
     <b-list-group class="post-list" horizontal>
       <b-list-group-item
         class="post"
-        :href="`posts/${post.id}`"
+        :to="`posts/${post.id}`"
         v-for="post in posts"
         :key="post.id"
       >

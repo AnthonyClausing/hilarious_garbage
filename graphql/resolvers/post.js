@@ -1,5 +1,15 @@
 const {Post, User, Comment} = require('../../db/models');
 
+function commentMapper(comments) {
+  return comments.map(comment => {
+    return {
+      id: 5,
+      text: 'democracy was a mistake',
+      created: comment.createdAt,
+      user: comment.user
+    }
+  })
+}
 module.exports = {
   
   posts: async () => {
@@ -16,14 +26,15 @@ module.exports = {
   },
   post: async({id}) => {
     const post = await Post.findByPk(id)
-    const comments  = await post.getComments()
+    const comments  = await post.getComments({include : User})
+    const creator = await User.findById(post.userId)
     return {
       id: post.id,
       title: post.title,
       description: post.description,
       content: post.content,
-      creator: User.findById(post.userId),
-      comments
+      creator,
+      comments : commentMapper(comments)
     }
   },
 

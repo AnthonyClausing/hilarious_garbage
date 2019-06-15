@@ -1,6 +1,5 @@
 <template>
   <b-container fluid class="home">
-    <Navbar />
     <PostContainer />
   </b-container>
 </template>

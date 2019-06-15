@@ -1,8 +1,20 @@
 <template>
   <b-container fluid id="app">
+    <Navbar />
     <router-view />
   </b-container>
 </template>
+<script>
+// @ is an alias to /src
+import Navbar from "@/components/Navbar.vue";
+
+export default {
+  name: "app",
+  components: {
+    Navbar
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
