@@ -27,7 +27,7 @@ module.exports = {
   post: async({id}) => {
     const post = await Post.findByPk(id)
     const comments  = await post.getComments({include : User})
-    const creator = await User.findById(post.userId)
+    const creator = await User.findByPk(post.userId)
     return {
       id: post.id,
       title: post.title,
