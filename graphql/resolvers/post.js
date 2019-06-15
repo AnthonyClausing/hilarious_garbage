@@ -4,19 +4,27 @@ module.exports = {
   
   posts: async () => {
     const posts = await Post.findAll()
-    const comm = await Comment.findAll()
-    
     return await posts.map(post => {
       return {
         id: post.id,
         title: post.title,
         description: post.description,
         content: post.content,
-        creator: User.findById(post.userId),
-        comments: comm.filter( c => c.postId === post.id) ,
         createdAt: post.createdAt
       }
     })
+  },
+  post: async({id}) => {
+    const post = await Post.findByPk(id)
+    const comments  = await post.getComments()
+    return {
+      id: post.id,
+      title: post.title,
+      description: post.description,
+      content: post.content,
+      creator: User.findById(post.userId),
+      comments
+    }
   },
 
   createPost: async (postData) => {

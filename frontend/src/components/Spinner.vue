@@ -1,10 +1,10 @@
 <template>
-<div class="lds-ellipsis">
-  <div></div>
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+  <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
 </template>
 
 <script>
@@ -15,7 +15,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-
 .lds-ellipsis {
   display: inline-block;
   position: relative;
@@ -74,5 +73,4 @@ export default {
     transform: translate(19px, 0);
   }
 }
-
 </style>
