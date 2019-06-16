@@ -1,22 +1,41 @@
 const {Post, User, Comment} = require('../../db/models');
 
+function commentMapper(comments) {
+  return comments.map(comment => {
+    return {
+      id: 5,
+      text: 'democracy was a mistake',
+      created: comment.createdAt,
+      user: comment.user
+    }
+  })
+}
 module.exports = {
   
   posts: async () => {
     const posts = await Post.findAll()
-    const comm = await Comment.findAll()
-    
     return await posts.map(post => {
       return {
         id: post.id,
         title: post.title,
         description: post.description,
         content: post.content,
-        creator: User.findById(post.userId),
-        comments: comm.filter( c => c.postId === post.id) ,
         createdAt: post.createdAt
       }
     })
+  },
+  post: async({id}) => {
+    const post = await Post.findByPk(id)
+    const comments  = await post.getComments({include : User})
+    const creator = await User.findByPk(post.userId)
+    return {
+      id: post.id,
+      title: post.title,
+      description: post.description,
+      content: post.content,
+      creator,
+      comments : commentMapper(comments)
+    }
   },
 
   createPost: async (postData) => {

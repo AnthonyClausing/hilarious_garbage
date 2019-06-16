@@ -41,6 +41,7 @@ input UserInput {
 
 type RootQuery {
   posts: [Post!]!
+  post(id: String!): Post!
   users: [User!]!
   login(email: String!, password: String!): User!
 }
