@@ -1,14 +1,14 @@
 <template>
   <b-container fluid class="home">
-    <Post :post="post"/>
-    <Comments :comments="comments"/>
+    <Post :post="post" />
+    <Comments :comments="comments" />
   </b-container>
 </template>
 
 <script>
 // @ is an alias to /src
 import Post from "@/components/Posts/Post.vue";
-import Comments from '@/components/Comments/Comments.vue'
+import Comments from "@/components/Comments/Comments.vue";
 
 export default {
   name: "SinglePost",
@@ -16,18 +16,18 @@ export default {
     Post,
     Comments
   },
-  data(){
-    return{
+  data() {
+    return {
       post: {},
       isLoading: false
-    }
+    };
   },
-  created(){
-    this.fetchPost()
+  created() {
+    this.fetchPost();
   },
-  computed:{
-    comments(){
-      return this.post.comments
+  computed: {
+    comments() {
+      return this.post.comments;
     }
   },
   methods: {
@@ -74,7 +74,7 @@ export default {
         })
         .then(resData => {
           const post = resData.data.post;
-          console.log(post)
+          console.log(post);
           this.post = post;
           this.isLoading = false;
         })
@@ -84,5 +84,5 @@ export default {
         });
     }
   }
-}
+};
 </script>

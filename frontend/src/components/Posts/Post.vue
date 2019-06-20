@@ -2,10 +2,25 @@
   <b-container>
     <b-row>
       <b-col>
-        <h1>{{post.title}}</h1>
-        <b-link :to="`/user/${post.creator && post.creator.id}`" router-tag="h3">{{post.creator && post.creator.name}}</b-link>
-        <p>{{post.content}}</p>
-        <p>Description: {{post.description}}</p>
+        <b-row>
+          <b-col>
+            <div class="content-title">
+              <h5>{{ post.title }}</h5>
+            </div>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <b-link
+              class="content-creator"
+              :to="`/user/${post.creator && post.creator.id}`"
+              router-tag="span"
+              >user{{ post.creator && post.creator.name }}</b-link
+            >
+          </b-col>
+        </b-row>
+        <p>{{ post.content }}</p>
+        <p>Description: {{ post.description }}</p>
       </b-col>
     </b-row>
   </b-container>
@@ -14,10 +29,16 @@
 <script>
 export default {
   name: "Post",
-  props: ['post']
-}
+  props: ["post"]
+};
 </script>
 
 <style lang="scss">
-
+.content-title {
+  text-align: left;
+  color: #6fe600;
+}
+.content-creator {
+  font-size: 13px;
+}
 </style>
