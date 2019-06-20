@@ -2,7 +2,7 @@ import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Home.vue";
 import About from "./views/About.vue";
-import Post from "./components/Posts/Post.vue"
+import SinglePost from "./views/SinglePost.vue";
 Vue.use(Router);
 
 export default new Router({
@@ -21,9 +21,8 @@ export default new Router({
     },
     {
       path: "/posts/:id",
-      name: "post",
-      component: Post
+      name: "single-post",
+      component: SinglePost
     }
-
   ]
 });

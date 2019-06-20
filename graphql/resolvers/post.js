@@ -4,8 +4,8 @@ function commentMapper(comments) {
   return comments.map(comment => {
     return {
       id: 5,
-      text: 'democracy was a mistake',
-      created: comment.createdAt,
+      text: comment.text,
+      createdAt: comment.createdAt,
       user: comment.user
     }
   })
