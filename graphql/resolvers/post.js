@@ -1,9 +1,9 @@
-const {Post, User, Comment} = require('../../db/models');
+const {Post, User} = require('../../db/models');
 
 function commentMapper(comments) {
   return comments.map(comment => {
     return {
-      id: 5,
+      id: comment.id,
       text: comment.text,
       createdAt: comment.createdAt,
       user: comment.user
