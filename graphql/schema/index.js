@@ -39,6 +39,12 @@ input UserInput {
   name: String!
 }
 
+input CommentInput {
+  postId: String!
+  text: String!
+  userId: String!
+}
+
 type RootQuery {
   posts: [Post!]!
   post(id: String!): Post!
@@ -49,6 +55,7 @@ type RootQuery {
 type RootMutation {
   createPost(postInput: PostInput): Post
   createUser(userInput: UserInput): User
+  addComment(commentInput: CommentInput): [Comment!]!
 }
 
 schema {
