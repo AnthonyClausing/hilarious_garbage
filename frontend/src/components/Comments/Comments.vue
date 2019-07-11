@@ -56,46 +56,7 @@ export default {
       if (!this.commentText.trim().length) {
         return;
       }
-      const requestBody = {
-        query: `
-          mutation AddComment($postId: String! $text: String!, $userId: String!) {
-            addComment(commentInput: {postId: $postId, text: $text, userId: $userId}){
-              text
-              id
-              createdAt
-              user {
-                id
-                name
-              }
-            }
-          }
-        `,
-        variables: {
-          postId,
-          text: this.commentText,
-          userId: "2"
-        }
-      };
-
-      fetch("http://localhost:3000/graphql", {
-        method: "POST",
-        body: JSON.stringify(requestBody),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then(res => {
-          if (res.status !== 200 && res.status !== 201) {
-            throw new Error("Failed");
-          }
-          return res.json();
-        })
-        .then(resData => {
-          console.log(resData.data, "new comment data");
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.$store.dispatch('posts/createComment', {postId, text: this.commentText, userId: "2"})
     }
   }
 };

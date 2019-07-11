@@ -16,56 +16,15 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: "Postlist",
-  data() {
-    return {
-      posts: [],
-      isLoading: false
-    };
-  },
+  //maybe dont call here instead in views
   mounted() {
-    this.fetchPosts();
+    this.$store.dispatch('posts/getAllPosts');
   },
-  methods: {
-    fetchPosts() {
-      this.isLoading = true;
-      const requestBody = {
-        query: `
-        query{
-          posts{
-            id
-            content
-            description
-            title
-          }
-        }
-      `
-      };
-
-      fetch("http://localhost:3000/graphql", {
-        method: "POST",
-        body: JSON.stringify(requestBody),
-        headers: {
-          "Content-Type": "application/json"
-        }
-      })
-        .then(res => {
-          if (res.status !== 200 && res.status !== 201) {
-            throw new Error("Failed");
-          }
-          return res.json();
-        })
-        .then(resData => {
-          const posts = resData.data.posts;
-          this.posts = [...posts];
-          this.isLoading = false;
-        })
-        .catch(err => {
-          console.log(err);
-          this.isLoading = false;
-        });
-    }
+  computed: {
+    ...mapState({ posts: state => state.posts.posts })
   }
 };
 </script>
