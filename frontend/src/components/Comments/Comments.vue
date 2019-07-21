@@ -56,7 +56,11 @@ export default {
       if (!this.commentText.trim().length) {
         return;
       }
-      this.$store.dispatch('posts/createComment', {postId, text: this.commentText, userId: "2"})
+      this.$store.dispatch("posts/createComment", {
+        postId,
+        text: this.commentText,
+        userId: "2"
+      });
     }
   }
 };

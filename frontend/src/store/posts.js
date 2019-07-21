@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from "axios";
 
-export default  {
+export default {
   namespaced: true,
   state: {
     post: {},
@@ -9,7 +9,7 @@ export default  {
     loading: false
   },
   actions: {
-    getAllPosts({commit}){
+    getAllPosts({ commit }) {
       const requestBody = {
         query: `
         query{
@@ -22,21 +22,22 @@ export default  {
         }
       `
       };
-      commit('UPDATE_LOADING', true)
-      axios.post("http://localhost:3000/graphql", requestBody)
+      commit("UPDATE_LOADING", true);
+      axios
+        .post("http://localhost:3000/graphql", requestBody)
         .then(res => {
-          const posts = res.data.data.posts
-          commit('SET_POSTS', posts)
-          commit('UPDATE_LOADING', false)
+          const posts = res.data.data.posts;
+          commit("SET_POSTS", posts);
+          commit("UPDATE_LOADING", false);
         })
         .catch(err => {
           console.log(err);
-          commit('UPDATE_LOADING', false)
+          commit("UPDATE_LOADING", false);
         });
     },
-    getSinglePost({commit}, postId){
+    getSinglePost({ commit }, postId) {
       const requestBody = {
-        query:`
+        query: `
         query{
           post(id: "${postId}") {
             id
@@ -60,20 +61,21 @@ export default  {
         }
       `
       };
-      commit('UPDATE_LOADING', true)
-      axios.post("http://localhost:3000/graphql", requestBody)
+      commit("UPDATE_LOADING", true);
+      axios
+        .post("http://localhost:3000/graphql", requestBody)
         .then(res => {
-          const post = res.data.data.post
-          commit('SET_POST', post)
-          commit('SET_COMMENTS', post.comments)
-          commit('UPDATE_LOADING', false)
+          const post = res.data.data.post;
+          commit("SET_POST", post);
+          commit("SET_COMMENTS", post.comments);
+          commit("UPDATE_LOADING", false);
         })
         .catch(err => {
           console.log(err);
-          commit('UPDATE_LOADING', false)
+          commit("UPDATE_LOADING", false);
         });
     },
-    createComment({commit}, queryVariables){
+    createComment({ commit }, queryVariables) {
       const requestBody = {
         query: `
           mutation AddComment($postId: String! $text: String!, $userId: String!) {
@@ -90,32 +92,32 @@ export default  {
         `,
         variables: queryVariables
       };
-      commit('UPDATE_LOADING', true)
-      axios.post("http://localhost:3000/graphql", requestBody)
+      commit("UPDATE_LOADING", true);
+      axios
+        .post("http://localhost:3000/graphql", requestBody)
         .then(res => {
-          const updatedComments = res.data.data.addComment
-          commit('SET_COMMENTS', updatedComments)
-          commit('UPDATE_LOADING', false)
+          const updatedComments = res.data.data.addComment;
+          commit("SET_COMMENTS", updatedComments);
+          commit("UPDATE_LOADING", false);
         })
         .catch(err => {
           console.log(err);
-          commit('UPDATE_LOADING', false)
+          commit("UPDATE_LOADING", false);
         });
     }
-
   },
-  mutations:{
-    UPDATE_LOADING (state, bool) {
-      state.loading = bool
+  mutations: {
+    UPDATE_LOADING(state, bool) {
+      state.loading = bool;
     },
     SET_POSTS(state, posts) {
-      state.posts = posts
+      state.posts = posts;
     },
     SET_POST(state, post) {
-      state.post = post
+      state.post = post;
     },
-    SET_COMMENTS(state, comments){
-      state.comments = comments
+    SET_COMMENTS(state, comments) {
+      state.comments = comments;
     }
   }
-}
+};
