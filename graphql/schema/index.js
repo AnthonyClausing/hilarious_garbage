@@ -27,16 +27,15 @@ type User {
   createdPosts: [Post!]!
 }
 
+type AuthPayload {
+  token: String
+  user: User
+}
+
 input PostInput {
   title: String!
   description: String!
   content: String!
-}
-
-input UserInput {
-  email: String!
-  password: String!
-  name: String!
 }
 
 input CommentInput {
@@ -49,13 +48,13 @@ type RootQuery {
   posts: [Post!]!
   post(id: String!): Post!
   users: [User!]!
-  login(email: String!, password: String!): User!
 }
 
 type RootMutation {
   createPost(postInput: PostInput): Post
-  createUser(userInput: UserInput): User
   addComment(commentInput: CommentInput): [Comment!]!
+  signup(name: String!, password: String!, email: String): AuthPayload
+  login(name: String!, password: String!): AuthPayload
 }
 
 schema {

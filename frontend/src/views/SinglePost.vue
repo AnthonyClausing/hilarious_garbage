@@ -9,7 +9,7 @@
 // @ is an alias to /src
 import Post from "@/components/Posts/Post.vue";
 import Comments from "@/components/Comments/Comments.vue";
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
   name: "SinglePost",
   components: {
@@ -17,10 +17,10 @@ export default {
     Comments
   },
   created() {
-    this.$store.dispatch('posts/getSinglePost',this.$route.params.id);
+    this.$store.dispatch("posts/getSinglePost", this.$route.params.id);
   },
   computed: {
-    ...mapState({ 
+    ...mapState({
       post: state => state.posts.post,
       comments: state => state.posts.comments
     })

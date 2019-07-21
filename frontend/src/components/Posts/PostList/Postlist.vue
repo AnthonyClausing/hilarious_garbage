@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState } from "vuex";
 export default {
   name: "Postlist",
   //maybe dont call here instead in views
   mounted() {
-    this.$store.dispatch('posts/getAllPosts');
+    this.$store.dispatch("posts/getAllPosts");
   },
   computed: {
     ...mapState({ posts: state => state.posts.posts })
