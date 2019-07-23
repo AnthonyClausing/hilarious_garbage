@@ -13,15 +13,12 @@ function commentMapper(comments) {
 
 module.exports = {
   addComment: async (commentData) => {
-    console.log(commentData)
     let comment = await Comment.create({
       text: commentData.commentInput.text,
       postId: commentData.commentInput.postId,
       userId: commentData.commentInput.userId
     })
-    console.log('successfully created comment')
-    let postComments = await Comment.findAll({where: {postId: commentData.commentInput.postId}, include : User} )
-    console.log(postComments)
+    let postComments = await Comment.findAll({where: {postId: commentData.commentInput.postId}, include : User})
     return commentMapper(postComments) 
   }
 }
