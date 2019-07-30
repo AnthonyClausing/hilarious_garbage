@@ -18,6 +18,8 @@ export default {
             content
             description
             title
+            contentType
+            imageId
           }
         }
       `
@@ -44,6 +46,7 @@ export default {
             content
             description
             title
+            contentType
             creator {
               id
               name
@@ -51,6 +54,8 @@ export default {
             comments {
               text
               id
+              image
+              imageId
               createdAt
               user {
                 id
@@ -75,13 +80,39 @@ export default {
           commit("UPDATE_LOADING", false);
         });
     },
-    createComment({ commit }, queryVariables) {
+    createPost({ commit }, variables) {
       const requestBody = {
         query: `
-          mutation AddComment($postId: String! $text: String!, $userId: String!) {
-            addComment(commentInput: {postId: $postId, text: $text, userId: $userId}){
+          mutation CreatePost($title: String! $description: String!, $content: String!, $contentType: String!, $imageId: String) {
+            createPost(postInput: {title: $title, description: $description, content: $content, contentType: $contentType, imageId: $imageId}){
+              id
+            }
+          }
+        `,
+        variables
+      };
+      commit("UPDATE_LOADING", true);
+      return axios
+        .post("http://localhost:3000/graphql", requestBody)
+        .then(res => {
+          const id = res.data.data.createPost.id;
+          commit("UPDATE_LOADING", false);
+          return id;
+        })
+        .catch(err => {
+          console.log(err);
+          commit("UPDATE_LOADING", false);
+        });
+    },
+    createComment({ commit }, variables) {
+      const requestBody = {
+        query: `
+          mutation AddComment($postId: String! $text: String!, $userId: String!, $image: String, $imageId: String) {
+            addComment(commentInput: {postId: $postId, text: $text, userId: $userId, image: $image, imageId: $imageId}){
               text
               id
+              image
+              imageId
               createdAt
               user {
                 id
@@ -90,7 +121,7 @@ export default {
             }
           }
         `,
-        variables: queryVariables
+        variables
       };
       commit("UPDATE_LOADING", true);
       axios

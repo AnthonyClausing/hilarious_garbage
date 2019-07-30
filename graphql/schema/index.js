@@ -4,6 +4,8 @@ module.exports = buildSchema(`
 type Comment {
   id: ID!
   text: String!
+  image: String
+  imageId: String
   post: Post!
   user: User!
   createdAt: String!
@@ -14,6 +16,8 @@ type Post {
   title: String!
   description: String!
   content: String!
+  imageId: String
+  contentType: String!
   creator: User!
   comments: [Comment!]!
   createdAt: String!
@@ -36,12 +40,16 @@ input PostInput {
   title: String!
   description: String!
   content: String!
+  contentType: String!
+  imageId: String
 }
 
 input CommentInput {
   postId: String!
   text: String!
   userId: String!
+  image: String
+  imageId: String
 }
 
 type RootQuery {

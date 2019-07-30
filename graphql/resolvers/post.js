@@ -5,6 +5,8 @@ function commentMapper(comments) {
     return {
       id: comment.id,
       text: comment.text,
+      image: comment.image,
+      imageId: comment.imageId,
       createdAt: comment.createdAt,
       user: comment.user
     }
@@ -20,6 +22,8 @@ module.exports = {
         title: post.title,
         description: post.description,
         content: post.content,
+        contentType: post.contentType,
+        imageId: post.imageId,
         createdAt: post.createdAt
       }
     })
@@ -33,6 +37,7 @@ module.exports = {
       title: post.title,
       description: post.description,
       content: post.content,
+      contentType: post.contentType,
       creator,
       comments : commentMapper(comments)
     }
@@ -44,7 +49,9 @@ module.exports = {
         title: postData.postInput.title, 
         description: postData.postInput.description, 
         content: postData.postInput.content,
-        creatorId: 1
+        contentType: postData.postInput.contentType,
+        imageId: postData.postInput.imageId,
+        userId: "1"
       })
       return createdPost
     } catch (err) {

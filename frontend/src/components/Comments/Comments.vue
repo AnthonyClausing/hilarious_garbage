@@ -3,17 +3,9 @@
     <div style="color: red; border-top: 3px solid yellow;">comments below</div>
     <b-row>
       <b-col>
-        <button v-b-modal.com-modal>Add Comment</button>
+        <button v-b-modal.comment-modal>Add Comment</button>
       </b-col>
-      <b-modal
-        id="com-modal"
-        title="Leave A Comment"
-        @ok="modalConfirm"
-        hide-backdrop
-        no-close-on-backdrop
-      >
-        <b-form-textarea v-model="commentText"> </b-form-textarea>
-      </b-modal>
+      <comment-modal />
     </b-row>
     <b-row
       class="comment-box"
@@ -34,6 +26,8 @@
           </span>
         </div>
         <div class="text-left">
+          <!-- WIP split text and img in two cols? -->
+          <img v-if="comment.image" img :src="comment.image" />
           <p class="px-1">{{ comment.text }}</p>
         </div>
       </b-col>
@@ -42,26 +36,13 @@
 </template>
 
 <script>
+import CommentModal from "@/components/Modals/CommentModal.vue";
+
 export default {
   name: "Comments",
   props: ["comments"],
-  data() {
-    return {
-      commentText: ""
-    };
-  },
-  methods: {
-    modalConfirm() {
-      let postId = this.$route.params.id;
-      if (!this.commentText.trim().length) {
-        return;
-      }
-      this.$store.dispatch("posts/createComment", {
-        postId,
-        text: this.commentText,
-        userId: "2"
-      });
-    }
+  components: {
+    CommentModal
   }
 };
 </script>

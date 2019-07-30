@@ -19,7 +19,8 @@
             >
           </b-col>
         </b-row>
-        <p>{{ post.content }}</p>
+        <p v-if="post.contentType == 'text'">{{ post.content }}</p>
+        <img v-if="post.contentType == 'image'" :src="post.content" />
         <p>Description: {{ post.description }}</p>
       </b-col>
     </b-row>

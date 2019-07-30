@@ -47,48 +47,58 @@ const users = [{
 const posts = [{
     title: 'test1 post', 
     description: 'this is test1', 
-    content: 'what is test1?'
+    content: 'what is test1?',
+    contentType: 'text'
   },{
     title: 'test2 post', 
     description: 'this is test2', 
-    content: 'what is test2?'
+    content: 'what is test2?',
+    contentType: 'text'
   },{
     title: 'test3 post', 
     description: 'this is test3', 
-    content: 'what is test3?'
+    content: 'what is test3?',
+    contentType: 'text'
   },{
     title: 'test4 post', 
     description: 'this is test4', 
-    content: 'what is test4?'
+    content: 'what is test4?',
+    contentType: 'text'
   },{
     title: 'test5 post', 
     description: 'this is test5', 
-    content: 'what is test5?'
+    content: 'what is test5?',
+    contentType: 'text'
   },
   {
     title: 'test6 post', 
     description: 'this is test6', 
-    content: 'what is test6?'
+    content: 'what is test6?',
+    contentType: 'text'
   },
   {
     title: 'test7 post', 
     description: 'this is test7', 
-    content: 'what is test7?'
+    content: 'what is test7?',
+    contentType: 'text'
   },
   {
     title: 'test8 post', 
     description: 'this is test8', 
-    content: 'what is test8?'
+    content: 'what is test8?',
+    contentType: 'text'
   },
   {
     title: 'test9 post', 
     description: 'this is test9', 
-    content: 'what is test9?'
+    content: 'what is test9?',
+    contentType: 'text'
   },
   {
     title: 'test10 post', 
     description: 'this is test10', 
-    content: 'what is test10?'
+    content: 'what is test10?',
+    contentType: 'text'
   }];
 
 const comments = [{
@@ -97,11 +107,15 @@ const comments = [{
     text: 'this is crazy, man'
   },{
     text: 'YAAAAAAAS'
-},{
-  text: 'thanks I hate it'
-},{
-  text: 'democracy was a mistake'
-}];
+  },{
+    text: 'thanks I hate it'
+  },{
+    text: 'democracy was a mistake',
+  },{
+    text: 'hmmmmmmmm',
+    image: "http://res.cloudinary.com/afurosensei/image/upload/v1564375135/mememachine/le5rfkplbkva35t04dw8.png",
+    imageId: "mememachine/le5rfkplbkva35t04dw8"
+  }];
 
 const seed = () => {
   return Promise.all(users.map(user => User.create(user)))

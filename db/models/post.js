@@ -12,6 +12,14 @@ const Post = db.define('post', {
   },
   content: {
     type: Sequelize.STRING
+  },
+  contentType: {
+    type: Sequelize.STRING,
+    allowNull: false
+  },
+  imageId: {
+    type: Sequelize.STRING,
+    allowNull: true
   }
 })
 
