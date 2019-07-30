@@ -18,6 +18,8 @@ export default {
             content
             description
             title
+            contentType
+            imageId
           }
         }
       `
@@ -44,6 +46,7 @@ export default {
             content
             description
             title
+            contentType
             creator {
               id
               name
@@ -51,6 +54,8 @@ export default {
             comments {
               text
               id
+              image
+              imageId
               createdAt
               user {
                 id
@@ -78,10 +83,12 @@ export default {
     createComment({ commit }, queryVariables) {
       const requestBody = {
         query: `
-          mutation AddComment($postId: String! $text: String!, $userId: String!) {
-            addComment(commentInput: {postId: $postId, text: $text, userId: $userId}){
+          mutation AddComment($postId: String! $text: String!, $userId: String!, $image: String, $imageId: String) {
+            addComment(commentInput: {postId: $postId, text: $text, userId: $userId, image: $image, imageId: $imageId}){
               text
               id
+              image
+              imageId
               createdAt
               user {
                 id
