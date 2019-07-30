@@ -11,9 +11,10 @@
     <!-- add slight spacing between these two -->
     <dropzone
       @vdropzone-success="setImageFile"
-      @vdropzone-removed-file="image = null"
-      id="drop1"
+      @vdropzone-removed-file="imageFile = null"
+      id="comment-drop"
       :options="dropOptions"
+      dictDefaultMessage="Drop a file here"
     ></dropzone>
   </b-modal>
 </template>
@@ -37,7 +38,8 @@ export default {
       maxFilesize: 0.5,
       maxFiles: 1,
       addRemoveLinks: true,
-      dictRemoveFile: "REMOVE"
+      dictRemoveFile: "REMOVE",
+      dictDefaultMessage: "Drop a file here"
     },
     imageFile: null
   }),
