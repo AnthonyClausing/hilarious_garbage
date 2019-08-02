@@ -136,9 +136,10 @@ const seed = () => {
     return Post.create({...post, userId: createdUsers[Math.floor(Math.random() * users.length)].id})
   })))
   .then(async (createdPosts) => {
-    let red = await Comment.create({
+    let commie = await Comment.create({
       text: 'better dead than red',
-      postId: 2
+      postId: 2,
+      userId: 3
     })
     return await Promise.all(comments.map((comment, i) => {
       let idxs = [0,8,9]
