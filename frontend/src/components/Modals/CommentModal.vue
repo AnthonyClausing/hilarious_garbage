@@ -29,8 +29,8 @@ export default {
   components: {
     Dropzone
   },
-  props:{
-    parentId:{
+  props: {
+    parentId: {
       default: null
     }
   },
