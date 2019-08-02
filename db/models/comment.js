@@ -15,5 +15,5 @@ const Comment = db.define('comment', {
     allowNull: true
   }
 })
-
+Comment.isHierarchy({ childrenAs: 'replies' })
 module.exports = Comment;
