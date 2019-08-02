@@ -8,6 +8,8 @@ function commentMapper(comments) {
       image: comment.image,
       imageId: comment.imageId,
       createdAt: comment.createdAt,
+      parentId: comment.parentId,
+      postId: comment.postId,
       user: comment.user
     }
   })

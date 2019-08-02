@@ -1,4 +1,4 @@
-const {Post, User} = require('../../db/models');
+const {Post, User, Comment} = require('../../db/models');
 
 function commentMapper(comments) {
   return comments.map(comment => {
@@ -8,7 +8,8 @@ function commentMapper(comments) {
       image: comment.image,
       imageId: comment.imageId,
       createdAt: comment.createdAt,
-      user: comment.user
+      user: comment.user,
+      parentId: comment.parentId
     }
   })
 }
@@ -30,7 +31,7 @@ module.exports = {
   },
   post: async({id}) => {
     const post = await Post.findByPk(id)
-    const comments  = await post.getComments({include : User})
+    const comments  = await post.getComments({include: User})
     const creator = await User.findByPk(post.userId)
     return {
       id: post.id,
