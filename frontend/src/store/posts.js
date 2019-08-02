@@ -57,6 +57,7 @@ export default {
               image
               imageId
               createdAt
+              parentId
               user {
                 id
                 name
