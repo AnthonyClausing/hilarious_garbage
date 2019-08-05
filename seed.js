@@ -102,7 +102,16 @@ const posts = [{
   }];
 
 const comments = [{
-    text: 'this is wack'
+    text: 'this is wack',
+    postId: 2
+  },{
+    text: 'this is great'
+  },{
+    text: 'this is the dumbest stuff ever'
+  },{
+    text: 'Marty, Im scared'
+  },{
+    text: 'i give up on humanity'
   },{
     text: 'this is crazy, man'
   },{
@@ -111,10 +120,14 @@ const comments = [{
     text: 'thanks I hate it'
   },{
     text: 'democracy was a mistake',
+    parentId: 1,
+    postId: 2
   },{
     text: 'hmmmmmmmm',
     image: "http://res.cloudinary.com/afurosensei/image/upload/v1564375135/mememachine/le5rfkplbkva35t04dw8.png",
-    imageId: "mememachine/le5rfkplbkva35t04dw8"
+    imageId: "mememachine/le5rfkplbkva35t04dw8",
+    parentId: 1,
+    postId: 2
   }];
 
 const seed = () => {
@@ -122,9 +135,22 @@ const seed = () => {
   .then((createdUsers) => Promise.all(posts.map(post =>{
     return Post.create({...post, userId: createdUsers[Math.floor(Math.random() * users.length)].id})
   })))
-  .then((createdPosts) => Promise.all(comments.map(comment =>{
-    return Comment.create({...comment, postId: createdPosts[Math.floor(Math.random() * posts.length)].id, userId: Math.floor(Math.random() * 10) + 1})
-  })))
+  .then(async (createdPosts) => {
+    let commie = await Comment.create({
+      text: 'better dead than red',
+      postId: 2,
+      userId: 3
+    })
+    return await Promise.all(comments.map((comment, i) => {
+      let idxs = [0,8,9]
+      let commentParams = {
+        ...comment,  
+        userId: Math.floor(Math.random() * 10) + 1
+      }
+        commentParams.postId =  commentParams.postId || createdPosts[Math.floor(Math.random() * posts.length)].id
+      return Comment.create(commentParams)
+    }))
+  })
   .catch(err => {
     throw err 
   })

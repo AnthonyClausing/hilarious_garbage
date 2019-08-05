@@ -29,6 +29,11 @@ export default {
   components: {
     Dropzone
   },
+  props: {
+    parentId: {
+      default: null
+    }
+  },
   data: () => ({
     commentText: "",
     dropOptions: {

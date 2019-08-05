@@ -1,17 +1,6 @@
-const {Post, User} = require('../../db/models');
+const { Post, User } = require('../../db/models');
+const { commentMapper } = require('./merge')
 
-function commentMapper(comments) {
-  return comments.map(comment => {
-    return {
-      id: comment.id,
-      text: comment.text,
-      image: comment.image,
-      imageId: comment.imageId,
-      createdAt: comment.createdAt,
-      user: comment.user
-    }
-  })
-}
 module.exports = {
   
   posts: async () => {
@@ -30,7 +19,7 @@ module.exports = {
   },
   post: async({id}) => {
     const post = await Post.findByPk(id)
-    const comments  = await post.getComments({include : User})
+    const comments  = await post.getComments({include: User})
     const creator = await User.findByPk(post.userId)
     return {
       id: post.id,

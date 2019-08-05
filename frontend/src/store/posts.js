@@ -6,6 +6,7 @@ export default {
     post: {},
     posts: [],
     comments: [],
+    parentId: null,
     loading: false
   },
   actions: {
@@ -57,6 +58,7 @@ export default {
               image
               imageId
               createdAt
+              parentId
               user {
                 id
                 name
@@ -104,16 +106,17 @@ export default {
           commit("UPDATE_LOADING", false);
         });
     },
-    createComment({ commit }, variables) {
+    createComment({ commit, state }, variables) {
       const requestBody = {
         query: `
-          mutation AddComment($postId: String! $text: String!, $userId: String!, $image: String, $imageId: String) {
-            addComment(commentInput: {postId: $postId, text: $text, userId: $userId, image: $image, imageId: $imageId}){
+          mutation AddComment($postId: String! $text: String!, $userId: String!, $image: String, $imageId: String, $parentId: String) {
+            addComment(commentInput: {postId: $postId, text: $text, userId: $userId, image: $image, imageId: $imageId, parentId: $parentId}){
               text
               id
               image
               imageId
               createdAt
+              parentId
               user {
                 id
                 name
@@ -121,7 +124,7 @@ export default {
             }
           }
         `,
-        variables
+        variables: { ...variables, parentId: state.parentId }
       };
       commit("UPDATE_LOADING", true);
       axios
@@ -130,6 +133,7 @@ export default {
           const updatedComments = res.data.data.addComment;
           commit("SET_COMMENTS", updatedComments);
           commit("UPDATE_LOADING", false);
+          commit("SET_PARENT_ID", null);
         })
         .catch(err => {
           console.log(err);
@@ -149,6 +153,9 @@ export default {
     },
     SET_COMMENTS(state, comments) {
       state.comments = comments;
+    },
+    SET_PARENT_ID(state, id) {
+      state.parentId = id;
     }
   }
 };

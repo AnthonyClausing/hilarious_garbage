@@ -8,6 +8,8 @@ type Comment {
   imageId: String
   post: Post!
   user: User!
+  postId: String
+  parentId: String
   createdAt: String!
 }
 
@@ -50,6 +52,7 @@ input CommentInput {
   userId: String!
   image: String
   imageId: String
+  parentId: String
 }
 
 type RootQuery {

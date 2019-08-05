@@ -1,20 +1,20 @@
 <template>
   <b-container fluid class="home">
     <Post :post="post" />
-    <Comments :comments="comments" />
+    <comments-container :comments="comments" />
   </b-container>
 </template>
 
 <script>
 // @ is an alias to /src
 import Post from "@/components/Posts/Post.vue";
-import Comments from "@/components/Comments/Comments.vue";
+import CommentsContainer from "@/components/Comments/CommentsContainer.vue";
 import { mapState } from "vuex";
 export default {
   name: "SinglePost",
   components: {
     Post,
-    Comments
+    CommentsContainer
   },
   created() {
     this.$store.dispatch("posts/getSinglePost", this.$route.params.id);
