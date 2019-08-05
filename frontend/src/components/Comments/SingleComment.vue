@@ -1,36 +1,41 @@
 <template>
-  <b-row class="comment-box" no-gutters>
-    <!-- :style="indent" -->
-    <b-col cols="12" @click="toggleChildren"
-      ><button>See replies</button></b-col
-    >
-    <b-col cols="3" v-if="comment.image">
-      <!-- show profile image if comment is only text or " -->
-      <img :src="comment.image" />
+  <b-row no-gutters>
+    <b-col class="comParent" :style="indent">
+      <b-row>
+        <b-col cols="12" v-if="comment.replies.length">
+          <button @click="toggleChildren">See replies</button>
+        </b-col>
+        <b-col cols="3" v-if="comment.image">
+          <!-- show profile image if comment is only text or " -->
+          <img :src="comment.image" />
+        </b-col>
+        <b-col>
+          <div>
+            <span class="px-1" style="color: lightblue;">
+              {{ comment.user.name }}
+            </span>
+            <span class="reply" @click="openCommModalWithId(comment.id)"
+              >Reply</span
+            >
+            <span class="px-1">
+              ({{ new Date(Number(comment.createdAt)).toDateString() }})
+            </span>
+          </div>
+          <div class="text-left">
+            <!-- WIP split text and img in two cols? -->
+            <p class="px-1">{{ comment.text }}</p>
+          </div>
+        </b-col>
+      </b-row>
     </b-col>
-    <b-col>
-      <div class="text-left">
-        <span class="px-1" style="color: lightblue;">
-          {{ comment.user.name }}
-        </span>
-        <span @click="openCommModalWithId(comment.id)">Reply</span>
-        <span class="px-1">
-          ({{ new Date(Number(comment.createdAt)).toDateString() }})
-        </span>
-      </div>
-      <div class="text-left">
-        <!-- WIP split text and img in two cols? -->
-        <p class="px-1">{{ comment.text }}</p>
-      </div>
-    </b-col>
-    <b-col cols="12">
+    <b-col cols="12" v-if="showReplies">
       <single-comment
         v-for="comm in replies"
         :key="comm.id"
         :comment="comm"
         :replies="comm.replies"
         :depth="depth + 1"
-        @reply="$emit('reply', comm.id)"
+        class="comReply"
       >
       </single-comment>
     </b-col>
@@ -48,16 +53,20 @@ export default {
       type: Array
     },
     depth: {
-      type: Number,
-      default: 0
+      type: Number
     }
   },
   data: () => ({
     showReplies: null
   }),
+  computed: {
+    indent() {
+      return { transform: `translate(${Math.min(this.depth * 4, 20)}px)` };
+    }
+  },
   methods: {
     openCommModalWithId: function(commId) {
-      this.$emit("reply", commId);
+      this.$store.commit("posts/SET_PARENT_ID", commId);
       this.$bvModal.show("comment-modal");
     },
     toggleChildren() {
@@ -66,3 +75,23 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.comReply,
+.comParent {
+  background-color: #333333;
+  font-size: 1em;
+
+  &:hover {
+    background-color: #424242 !important;
+  }
+}
+.comReply {
+  background: url("../../assets/combars.png") 0 0 repeat-y;
+}
+.reply {
+  &:hover {
+    cursor: pointer;
+  }
+}
+</style>

@@ -7,20 +7,23 @@
       </b-col>
       <comment-modal :parentId="parentId" ref="commModal" />
     </b-row>
-    <single-comment
-      v-for="comment in commentTree"
-      :key="comment.id"
-      :comment="comment"
-      :replies="comment.replies"
-      @reply="setParentId"
-    >
-    </single-comment>
+    <div id="comment-wrapper">
+      <single-comment
+        v-for="comment in commentTree"
+        :key="comment.id"
+        :comment="comment"
+        :replies="comment.replies"
+        :depth="0"
+      >
+      </single-comment>
+    </div>
   </b-container>
 </template>
 
 <script>
 import CommentModal from "@/components/Modals/CommentModal.vue";
 import SingleComment from "./SingleComment.vue";
+import { mapState } from "vuex";
 
 export default {
   name: "CommentsContainer",
@@ -29,10 +32,10 @@ export default {
     CommentModal,
     SingleComment
   },
-  data: () => ({
-    parentId: null
-  }),
   computed: {
+    ...mapState({
+      parentId: state => state.posts.parentId
+    }),
     commentTree() {
       function buildTree(elements, parentId = null) {
         let branch = new Array();
@@ -49,21 +52,12 @@ export default {
       }
       return buildTree(this.comments);
     }
-  },
-  methods: {
-    setParentId(pId) {
-      this.parentId = pId;
-    }
   }
 };
 </script>
 
 <style lang="scss">
-.comment-box {
-  background-color: #333333;
-  font-size: 0.75em;
-  &:hover {
-    background-color: #424242 !important;
-  }
+#comment-wrapper {
+  background: url("../../assets/combars.png") 0 0 repeat-y;
 }
 </style>
