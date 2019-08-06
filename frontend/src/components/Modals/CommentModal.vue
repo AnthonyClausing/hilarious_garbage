@@ -23,6 +23,7 @@
 import Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "CommentModal",
@@ -48,12 +49,17 @@ export default {
     },
     imageFile: null
   }),
+  computed: {
+    ...mapState({
+      user: state => state.user.user
+    })
+  },
   methods: {
     modalConfirm() {
       const commentParams = {
         postId: this.$route.params.id,
         text: this.commentText,
-        userId: "2",
+        userId: this.user.id,
         image: null,
         imageId: null
       };
@@ -61,7 +67,7 @@ export default {
         //set some ui error state
         return;
       }
-      if (this.imageFile) {
+      if (this.imageFile && this.user) {
         this.uploadImage().then(img => {
           this.$store.dispatch("posts/createComment", {
             ...commentParams,
@@ -70,7 +76,9 @@ export default {
           });
         });
       } else {
-        this.$store.dispatch("posts/createComment", commentParams);
+        if (this.user) {
+          this.$store.dispatch("posts/createComment", commentParams);
+        }
       }
       //Validations function that basically just returns to exit
       // or maybe shows error and doesnt close modal
