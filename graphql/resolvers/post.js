@@ -40,7 +40,7 @@ module.exports = {
         content: postData.postInput.content,
         contentType: postData.postInput.contentType,
         imageId: postData.postInput.imageId,
-        userId: "1"
+        userId: postData.postInput.userId
       })
       return createdPost
     } catch (err) {
