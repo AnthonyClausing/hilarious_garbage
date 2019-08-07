@@ -62,6 +62,7 @@
 import Dropzone from "vue2-dropzone";
 import "vue2-dropzone/dist/vue2Dropzone.min.css";
 import axios from "axios";
+import { mapState } from "vuex";
 
 export default {
   name: "PostModal",
@@ -87,10 +88,16 @@ export default {
       dictDefaultMessage: "Drop a file here"
     }
   }),
+  computed: {
+    ...mapState({
+      user: state => state.user.user
+    })
+  },
   methods: {
     submitPost() {
       const queryVariables = {
         ...this.postData,
+        userId: this.user.id,
         imageId: null
       };
       if (this.postData.contentType === "image") {

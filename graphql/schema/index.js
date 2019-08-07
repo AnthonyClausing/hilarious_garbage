@@ -44,6 +44,7 @@ input PostInput {
   content: String!
   contentType: String!
   imageId: String
+  userId: String!
 }
 
 input CommentInput {

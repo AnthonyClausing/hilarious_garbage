@@ -10,7 +10,7 @@
           />
         </b-navbar-brand>
         <b-navbar-nav>
-          <b-nav-item v-if="user" :to="`user/${user.name}`" right>{{
+          <b-nav-item v-if="isLoggedIn" :to="`user/${user.name}`" right>{{
             user.name
           }}</b-nav-item>
           <b-button v-else v-b-modal.auth-modal>Login or Register</b-button>
@@ -18,8 +18,8 @@
           <b-button v-b-modal.post-modal class="variant-danger">
             MAKE A POST
           </b-button>
+          <span v-if="isLoggedIn" class="logout" @click="logout">Logout</span>
           <post-modal />
-          <!-- <b-nav-item :to="`/user/test1`" right>USER</b-nav-item> -->
         </b-navbar-nav>
       </b-navbar>
     </b-col>
@@ -38,7 +38,17 @@ export default {
     PostModal
   },
   computed: {
-    ...mapState({ user: state => state.user.user })
+    ...mapState({
+      user: state => state.user.user
+    }),
+    isLoggedIn() {
+      return this.user && this.$store.getters["user/isLoggedIn"];
+    }
+  },
+  methods: {
+    logout() {
+      this.$store.dispatch("user/logout").then(this.$forceUpdate());
+    }
   }
 };
 </script>
@@ -48,6 +58,9 @@ export default {
 .navbar_row {
   background: rgb(51, 51, 51);
   border: 1px solid rgb(141, 141, 141);
+}
+.logout {
+  color: red;
 }
 
 .navbar {
