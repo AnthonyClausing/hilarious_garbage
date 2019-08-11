@@ -13,7 +13,7 @@
             class="thumbnail"
             v-if="post.contentType == 'image'"
             :src="post.content"
-            fluid
+            fluid-grow
           ></b-img>
           <p v-else class="thumbnail-text text-truncate">{{ post.title }}</p>
         </b-link>

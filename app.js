@@ -1,7 +1,7 @@
 const graphqlHttp= require('express-graphql')
 const bodyParser = require('body-parser');
 const express = require('express');
-
+const PORT = process.env.PORT || 3000
 const db = require('./db');
 const graphQLSchema = require('./graphql/schema/index');
 const graphQLResolvers = require('./graphql/resolvers/index');
@@ -29,7 +29,7 @@ app.use('/graphql', graphqlHttp({
 
 db.sync({force:false})
   .then(() =>{
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
       console.log('youre listening on port 3k')
     })
   })
