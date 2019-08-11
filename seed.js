@@ -3,62 +3,63 @@ const {User, Post, Comment} = require('./db/models');
 
 
 const users = [{
-    name: 'test1',
-    email: 'test1@test.com', 
+    name: 'senseibean',
+    email: 'senseibean@test.com', 
     password: 'tester'
   },{
-    name: 'test2',
-    email: 'test2@test.com', 
+    name: 'asugar',
+    email: 'asugar@test.com', 
     password: 'tester'
   },{
-    name: 'test3',
-    email: 'test3@test.com', 
+    name: 'gamyrgrl',
+    email: 'gamyrgrl@test.com', 
     password: 'tester'
   },{
-    name: 'test4',
-    email: 'test4@test.com', 
+    name: 'normie4lyfe',
+    email: 'normie4lyfe@test.com', 
     password: 'tester'
   },{
-    name: 'test5',
-    email: 'test5@test.com', 
+    name: 'bofa',
+    email: 'bofa@test.com', 
     password: 'tester'
   },{
-    name: 'test6',
-    email: 'test6@test.com', 
+    name: 'blueshell',
+    email: 'blueshell@test.com', 
     password: 'tester'
   },{
-    name: 'test7',
-    email: 'test7@test.com', 
+    name: 'weebachu',
+    email: 'weebachu@test.com', 
     password: 'tester'
   },{
-    name: 'test8',
-    email: 'test8@test.com', 
+    name: 'vidyaman',
+    email: 'vidyman@test.com', 
     password: 'tester'
   },{
-    name: 'test9',
-    email: 'test9@test.com', 
+    name: 'imnewhere',
+    email: 'imnewhere@test.com', 
     password: 'tester'
   },{
-    name: 'test10',
-    email: 'test10@test.com', 
+    name: 'agentsmith',
+    email: 'agentsmith0@test.com', 
     password: 'tester'
 }];
 
 const posts = [{
-    title: 'test1 post', 
-    description: 'this is test1', 
-    content: 'what is test1?',
-    contentType: 'text'
+    title: 'Area 51', 
+    description: 'da boyz are back', 
+    content: "http://res.cloudinary.com/afurosensei/image/upload/v1565394503/memedreams/qzbsbua8ztgeeaulx9fc.jpg",
+    contentType: 'image',
+    imageId: "memedreams/qzbsbua8ztgeeaulx9fc"
   },{
     title: 'test2 post', 
     description: 'this is test2', 
     content: 'what is test2?',
     contentType: 'text'
   },{
-    title: 'test3 post', 
-    description: 'this is test3', 
-    content: 'what is test3?',
-    contentType: 'text'
+    title: 'My life Now',  
+    content: "http://res.cloudinary.com/afurosensei/image/upload/v1565474766/memedreams/dnn2xruieslqaldiffwq.jpg",
+    contentType: 'image',
+    imageId: "memedreams/dnn2xruieslqaldiffwq"
   },{
     title: 'test4 post', 
     description: 'this is test4', 
@@ -72,7 +73,6 @@ const posts = [{
   },
   {
     title: 'test6 post', 
-    description: 'this is test6', 
     content: 'what is test6?',
     contentType: 'text'
   },
@@ -89,8 +89,7 @@ const posts = [{
     contentType: 'text'
   },
   {
-    title: 'test9 post', 
-    description: 'this is test9', 
+    title: 'test9 post',  
     content: 'what is test9?',
     contentType: 'text'
   },
@@ -105,7 +104,9 @@ const comments = [{
     text: 'this is wack',
     postId: 2
   },{
-    text: 'this is great'
+    text: 'haha ur funny',
+    image: "http://res.cloudinary.com/afurosensei/image/upload/v1565460392/mememachine/xfpn0hp8r741h0wpsewy.jpg",
+    imageId: "mememachine/xfpn0hp8r741h0wpsewy"
   },{
     text: 'this is the dumbest stuff ever'
   },{
