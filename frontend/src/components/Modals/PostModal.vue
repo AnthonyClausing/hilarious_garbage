@@ -72,7 +72,7 @@ export default {
   data: () => ({
     postData: {
       title: "",
-      description: "",
+      description: null,
       content: "",
       contentType: "text"
     },
@@ -91,12 +91,16 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user
-    })
+    }),
+    descVariable() {
+      return this.postData.description ? this.postData.description : null;
+    }
   },
   methods: {
     submitPost() {
       const queryVariables = {
         ...this.postData,
+        description: this.descVariable,
         userId: this.user.id,
         imageId: null
       };
