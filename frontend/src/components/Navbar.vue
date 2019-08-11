@@ -2,26 +2,32 @@
   <b-row class="navbar_row">
     <b-col>
       <b-navbar>
-        <b-navbar-brand class="logo" :to="'/'">
+        <b-navbar-brand class="logo ml-1" :to="'/'">
           <img
             height="35px"
             alt="Hilarious Garbage logo"
             src="../assets/logo.svg"
           />
         </b-navbar-brand>
-        <b-navbar-nav>
-          <b-nav-item v-if="isLoggedIn" :to="`user/${user.name}`" right>{{
-            user.name
-          }}</b-nav-item>
+        <b-button v-b-modal.post-modal class="upload font-weight-bold">
+          UPLOAD
+        </b-button>
+        <b-navbar-nav class="ml-auto mr-3" right>
+          <b-nav-item
+            v-if="isLoggedIn"
+            class="username"
+            :to="`user/${user.name}`"
+          >
+            {{ user.name }}
+          </b-nav-item>
           <b-button v-else v-b-modal.auth-modal>Login or Register</b-button>
-          <auth-modal />
-          <b-button v-b-modal.post-modal class="variant-danger">
-            MAKE A POST
-          </b-button>
-          <span v-if="isLoggedIn" class="logout" @click="logout">Logout</span>
-          <post-modal />
+          <b-nav-text v-if="isLoggedIn" class="logout" @click="logout">
+            Logout
+          </b-nav-text>
         </b-navbar-nav>
       </b-navbar>
+      <auth-modal />
+      <post-modal />
     </b-col>
   </b-row>
 </template>
@@ -58,9 +64,13 @@ export default {
 .navbar_row {
   background: rgb(51, 51, 51);
   border: 1px solid rgb(141, 141, 141);
+  position: fixed;
+  width: 100%;
+  z-index: 9999;
 }
 .logout {
-  color: red;
+  color: #f4f4f4;
+  cursor: pointer;
 }
 
 .navbar {
@@ -69,9 +79,29 @@ export default {
 
   .logo {
     padding: 0;
+    float: left;
   }
 }
-
+#nav {
+  padding: 30px;
+  a {
+    font-weight: bold;
+    color: #2c3e50;
+    &.router-link-exact-active {
+      color: #42b983;
+    }
+  }
+}
+.upload {
+  background: #87bf67;
+}
+.username {
+  align-self: flex-end;
+  & > a {
+    color: #f4f4f4 !important;
+    text-decoration: none;
+  }
+}
 .form-header {
   font: 400 20px roboto, sans-serif;
 }
