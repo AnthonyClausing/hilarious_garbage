@@ -37,7 +37,7 @@ export default {
           commit("AUTH_SUCCESS", userInfo, token);
           commit("UPDATE_LOADING", false);
         })
-        .catch(err => {
+        .catch(() => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           commit("UPDATE_LOADING", false);
@@ -72,8 +72,7 @@ export default {
           commit("AUTH_SUCCESS", userInfo, token);
           commit("UPDATE_LOADING", false);
         })
-        .catch(err => {
-          console.log(err);
+        .catch(() => {
           localStorage.removeItem("token");
           localStorage.removeItem("user");
 

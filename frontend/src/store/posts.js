@@ -33,7 +33,7 @@ export default {
           commit("SET_POSTS", posts);
           commit("UPDATE_LOADING", false);
         })
-        .catch(err => {
+        .catch(() => {
           commit("UPDATE_LOADING", false);
         });
     },
@@ -76,7 +76,7 @@ export default {
           commit("SET_COMMENTS", post.comments);
           commit("UPDATE_LOADING", false);
         })
-        .catch(err => {
+        .catch(() => {
           commit("UPDATE_LOADING", false);
         });
     },
@@ -99,7 +99,7 @@ export default {
           commit("UPDATE_LOADING", false);
           return id;
         })
-        .catch(err => {
+        .catch(() => {
           commit("UPDATE_LOADING", false);
         });
     },
@@ -132,7 +132,7 @@ export default {
           commit("UPDATE_LOADING", false);
           commit("SET_PARENT_ID", null);
         })
-        .catch(err => {
+        .catch(() => {
           commit("UPDATE_LOADING", false);
         });
     }
