@@ -38,7 +38,6 @@ export default {
           commit("UPDATE_LOADING", false);
         })
         .catch(err => {
-          console.log(err);
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           commit("UPDATE_LOADING", false);

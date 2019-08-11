@@ -34,7 +34,6 @@ export default {
           commit("UPDATE_LOADING", false);
         })
         .catch(err => {
-          console.log(err);
           commit("UPDATE_LOADING", false);
         });
     },
@@ -78,7 +77,6 @@ export default {
           commit("UPDATE_LOADING", false);
         })
         .catch(err => {
-          console.log(err);
           commit("UPDATE_LOADING", false);
         });
     },
@@ -102,7 +100,6 @@ export default {
           return id;
         })
         .catch(err => {
-          console.log(err);
           commit("UPDATE_LOADING", false);
         });
     },
@@ -136,7 +133,6 @@ export default {
           commit("SET_PARENT_ID", null);
         })
         .catch(err => {
-          console.log(err);
           commit("UPDATE_LOADING", false);
         });
     }
