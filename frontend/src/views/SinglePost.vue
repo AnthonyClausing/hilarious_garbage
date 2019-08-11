@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid class="home">
+  <b-container fluid class="single-post">
     <Post :post="post" />
     <comments-container :comments="comments" />
   </b-container>
@@ -27,3 +27,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss">
+.single-post {
+  padding-top: 80px;
+}
+</style>
