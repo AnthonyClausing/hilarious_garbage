@@ -1,13 +1,12 @@
 <template>
-  <b-container>
-    <!-- <div style="color: red; border-top: 3px solid yellow;">comments below</div> -->
-    <b-row>
-      <b-col class="my-2">
-        <b-button v-b-modal.comment-modal>Add Comment</b-button>
-      </b-col>
-      <comment-modal :parentId="parentId" ref="commModal" />
-    </b-row>
-    <div id="comment-wrapper">
+  <!-- <div style="color: red; border-top: 3px solid yellow;">comments below</div> -->
+  <b-row no-gutters>
+    <b-col cols="12" class="my-2">
+      <b-button v-b-modal.comment-modal>Add Comment</b-button>
+      <span class="pl-3">({{ comments.length }})</span>
+    </b-col>
+    <comment-modal :parentId="parentId" ref="commModal" />
+    <b-col cols="12" id="comment-wrapper">
       <single-comment
         v-for="comment in commentTree"
         :key="comment.id"
@@ -16,8 +15,8 @@
         :depth="0"
       >
       </single-comment>
-    </div>
-  </b-container>
+    </b-col>
+  </b-row>
 </template>
 
 <script>

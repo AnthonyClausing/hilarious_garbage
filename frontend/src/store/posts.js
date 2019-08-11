@@ -85,7 +85,7 @@ export default {
     createPost({ commit }, variables) {
       const requestBody = {
         query: `
-          mutation CreatePost($title: String! $description: String!, $content: String!, $userId: String!, $contentType: String!, $imageId: String) {
+          mutation CreatePost($title: String! $description: String, $content: String!, $userId: String!, $contentType: String!, $imageId: String) {
             createPost(postInput: {title: $title, description: $description, userId: $userId, content: $content, contentType: $contentType, imageId: $imageId}){
               id
             }

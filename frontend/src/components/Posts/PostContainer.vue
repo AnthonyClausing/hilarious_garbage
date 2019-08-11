@@ -1,5 +1,5 @@
 <template>
-  <b-container fluid>
+  <b-container id="post-container" fluid>
     <b-row>
       <PostList />
     </b-row>
@@ -16,4 +16,8 @@ export default {
 };
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+#post-container {
+  padding-top: 40px;
+}
+</style>
