@@ -16,7 +16,7 @@ type Comment {
 type Post {
   id: ID!
   title: String!
-  description: String!
+  description: String
   content: String!
   imageId: String
   contentType: String!
@@ -40,7 +40,7 @@ type AuthPayload {
 
 input PostInput {
   title: String!
-  description: String!
+  description: String
   content: String!
   contentType: String!
   imageId: String

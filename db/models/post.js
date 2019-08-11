@@ -8,7 +8,7 @@ const Post = db.define('post', {
   },
   description: {
     type: Sequelize.STRING,
-    allowNull: false
+    allowNull: true
   },
   content: {
     type: Sequelize.STRING
