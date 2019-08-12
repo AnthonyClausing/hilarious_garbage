@@ -1,34 +1,30 @@
 {
-  "name": "hilarious_garbage",
-  "version": "1.0.0",
-  "description": "Clone of the site Funnyjunk using Graphql/PostgreSQL and Vuejs",
-  "main": "index.js",
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js",
-    "seed": "node ./seed.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AnthonyClausing/hilarious_garbage.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AnthonyClausing/hilarious_garbage/issues"
-  },
-  "homepage": "https://github.com/AnthonyClausing/hilarious_garbage#readme",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "dotenv": "^8.0.0",
-    "express": "^4.16.4",
-    "express-graphql": "^0.7.1",
-    "graphql": "^14.1.1",
-    "jsonwebtoken": "^8.4.0",
-    "pg": "^7.8.0",
-    "pg-hstore": "^2.3.2",
-    "sequelize": "5.12.2",
-    "sequelize-hierarchy": "^2.0.4"
+    "axios": "^0.19.0",
+    "bootstrap-vue": "^2.0.0-rc.24",
+    "vue": "^2.5.21",
+    "vue-router": "^3.0.1",
+    "vue2-dropzone": "^3.6.0",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.3.0",
+    "@vue/cli-plugin-eslint": "^3.3.0",
+    "@vue/cli-service": "^3.8.4",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.9.0",
+    "sass-loader": "^7.0.1",
+    "vue-template-compiler": "^2.5.21"
   }
 }
