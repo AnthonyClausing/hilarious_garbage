@@ -27,7 +27,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const userInfo = res.data.data.login.user;
           const token = res.data.data.login.token;
@@ -62,7 +62,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const userInfo = res.data.data.signup.user;
           const token = res.data.data.login.token;

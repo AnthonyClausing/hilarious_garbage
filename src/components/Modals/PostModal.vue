@@ -125,7 +125,7 @@ export default {
     uploadImage() {
       const imageParams = {
         file: this.imageFile.dataURL,
-        upload_preset: "ee5wiezd"
+        upload_preset: process.env.VUE_APP_POST_IMAGE_PRESET
       };
       const headers = {
         "Access-Control-Allow-Origin": "*",
@@ -137,10 +137,7 @@ export default {
         return res;
       });
       return axios
-        .post(
-          "https://api.cloudinary.com/v1_1/afurosensei/image/upload",
-          imageParams
-        )
+        .post(process.env.VUE_APP_IMAGE_UPLOAD_URL, imageParams)
         .then(res => {
           return res.data;
         });
