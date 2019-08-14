@@ -53,6 +53,9 @@ export default {
     imageStyle() {
       return { height: this.imageHeight };
     }
+  },
+  mounted() {
+    document.title = this.post.title;
   }
 };
 </script>
@@ -89,7 +92,7 @@ export default {
     width: calc(100% - 20px);
   }
   &-image {
-    max-width: 100%;
+    max-width: 750px;
   }
 }
 </style>

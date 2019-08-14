@@ -104,7 +104,7 @@ export default {
   },
   getters: {
     isLoggedIn(state) {
-      return !!state.token && !!state.user
-    } 
+      return !!state.token && !!state.user;
+    }
   }
 };
