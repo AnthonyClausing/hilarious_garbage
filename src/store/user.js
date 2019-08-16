@@ -27,14 +27,14 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
-          const userInfo = res.data.data.login.user;
+          const user = res.data.data.login.user;
           const token = res.data.data.login.token;
           localStorage.setItem("token", token);
-          localStorage.setItem("user", JSON.stringify(userInfo));
+          localStorage.setItem("user", JSON.stringify(user));
           axios.defaults.headers.common["Authorization"] = token;
-          commit("AUTH_SUCCESS", userInfo, token);
+          commit("AUTH_SUCCESS", { user, token });
           commit("UPDATE_LOADING", false);
         })
         .catch(() => {
@@ -62,7 +62,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const userInfo = res.data.data.signup.user;
           const token = res.data.data.login.token;
@@ -93,9 +93,9 @@ export default {
     UPDATE_LOADING(state, bool) {
       state.loading = bool;
     },
-    AUTH_SUCCESS(state, user, token) {
-      state.user = user;
-      state.token = token;
+    AUTH_SUCCESS(state, payload) {
+      state.user = payload.user;
+      state.token = payload.token;
     },
     LOG_OUT(state) {
       state.token = "";
@@ -103,6 +103,8 @@ export default {
     }
   },
   getters: {
-    isLoggedIn: state => !!state.token
+    isLoggedIn(state) {
+      return !!state.token && !!state.user;
+    }
   }
 };

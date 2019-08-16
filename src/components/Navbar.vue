@@ -9,7 +9,7 @@
             src="../assets/logo.svg"
           />
         </b-navbar-brand>
-        <b-button v-b-modal.post-modal class="upload font-weight-bold">
+        <b-button class="upload font-weight-bold" @click="openWhichModal">
           UPLOAD
         </b-button>
         <b-navbar-nav class="ml-auto mr-3" right>
@@ -48,12 +48,19 @@ export default {
       user: state => state.user.user
     }),
     isLoggedIn() {
-      return this.user && this.$store.getters["user/isLoggedIn"];
+      return this.$store.getters["user/isLoggedIn"];
     }
   },
   methods: {
     logout() {
-      this.$store.dispatch("user/logout").then(this.$forceUpdate());
+      this.$store.dispatch("user/logout");
+    },
+    openWhichModal() {
+      if (this.isLoggedIn) {
+        this.$bvModal.show("post-modal");
+      } else {
+        this.$bvModal.show("auth-modal");
+      }
     }
   }
 };

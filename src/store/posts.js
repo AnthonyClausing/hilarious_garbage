@@ -27,7 +27,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const posts = res.data.data.posts;
           commit("SET_POSTS", posts);
@@ -69,7 +69,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const post = res.data.data.post;
           commit("SET_POST", post);
@@ -93,7 +93,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       return axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const id = res.data.data.createPost.id;
           commit("UPDATE_LOADING", false);
@@ -125,7 +125,7 @@ export default {
       };
       commit("UPDATE_LOADING", true);
       axios
-        .post("https://hilariousgarbage-api.herokuapp.com/graphql", requestBody)
+        .post(process.env.VUE_APP_API_SECRET, requestBody)
         .then(res => {
           const updatedComments = res.data.data.addComment;
           commit("SET_COMMENTS", updatedComments);

@@ -1,8 +1,8 @@
 <template>
   <!-- <div style="color: red; border-top: 3px solid yellow;">comments below</div> -->
-  <b-row no-gutters>
+  <b-row class="mb-5" no-gutters>
     <b-col cols="12" class="my-2">
-      <b-button v-b-modal.comment-modal>Add Comment</b-button>
+      <b-button @click="openModal">Add Comment</b-button>
       <span class="pl-3">({{ comments.length }})</span>
     </b-col>
     <comment-modal :parentId="parentId" ref="commModal" />
@@ -50,6 +50,18 @@ export default {
         return branch;
       }
       return buildTree(this.comments);
+    },
+    isLoggedIn() {
+      return this.$store.getters["user/isLoggedIn"];
+    }
+  },
+  methods: {
+    openModal() {
+      if (this.isLoggedIn) {
+        this.$bvModal.show("comment-modal");
+      } else {
+        this.$bvModal.show("auth-modal");
+      }
     }
   }
 };

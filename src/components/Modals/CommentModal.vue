@@ -52,7 +52,10 @@ export default {
   computed: {
     ...mapState({
       user: state => state.user.user
-    })
+    }),
+    environ() {
+      return process.env;
+    }
   },
   methods: {
     modalConfirm() {
@@ -86,7 +89,7 @@ export default {
     uploadImage() {
       const imageParams = {
         file: this.imageFile.dataURL,
-        upload_preset: "maosesaj"
+        upload_preset: process.env.VUE_APP_COMMENT_IMAGE_PRESET
       };
       const headers = {
         "Access-Control-Allow-Origin": "*",
@@ -98,10 +101,7 @@ export default {
         return res;
       });
       return axios
-        .post(
-          "https://api.cloudinary.com/v1_1/afurosensei/image/upload",
-          imageParams
-        )
+        .post(process.env.VUE_APP_IMAGE_UPLOAD_URL, imageParams)
         .then(res => {
           return res.data;
         });

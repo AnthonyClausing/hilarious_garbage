@@ -10,13 +10,21 @@
             <span class="px-1">
               ({{ new Date(Number(comment.createdAt)).toDateString() }})
             </span>
-            <span class="reply" @click="openCommModalWithId(comment.id)">
+            <span
+              class="plus-button"
+              v-if="comment.replies.length > 2"
+              @click="toggleChildren"
+            >
+              {{ showRepliesSymbol }}
+            </span>
+            <span
+              v-if="isLoggedIn"
+              class="reply"
+              @click="openCommModalWithId(comment.id)"
+            >
               Reply
             </span>
           </div>
-          <button v-if="comment.replies.length" @click="toggleChildren">
-            {{ showRepliesSymbol }}
-          </button>
         </b-col>
         <b-col cols="3" class="px-0" v-if="comment.image">
           <!-- show profile image if comment is only text or " -->
@@ -66,6 +74,9 @@ export default {
     },
     showRepliesSymbol() {
       return this.showReplies ? "[-]" : "[+]";
+    },
+    isLoggedIn() {
+      return this.$store.getters["user/isLoggedIn"];
     }
   },
   methods: {
@@ -97,6 +108,14 @@ export default {
   float: right;
   margin-right: 15px;
   &:hover {
+    cursor: pointer;
+  }
+}
+.plus-button {
+  border: 1px solid black;
+  color: white !important;
+  &:hover {
+    border: 1px solid white;
     cursor: pointer;
   }
 }
