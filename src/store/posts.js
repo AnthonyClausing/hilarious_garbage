@@ -33,7 +33,7 @@ export default {
         .then(res => {
           const posts = res.data.data.posts;
           commit("SET_POSTS", posts);
-          commit("SET_COUNT", posts[0].count)
+          commit("SET_COUNT", posts[0].count);
           commit("UPDATE_LOADING", false);
         })
         .catch(() => {
