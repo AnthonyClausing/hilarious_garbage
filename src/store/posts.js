@@ -5,22 +5,24 @@ export default {
   state: {
     post: {},
     posts: [],
+    count: 0,
     comments: [],
     parentId: null,
     loading: false
   },
   actions: {
-    getAllPosts({ commit }) {
+    getAllPosts({ commit }, page) {
       const requestBody = {
         query: `
         query{
-          posts{
+          posts(page: ${page}){
             id
             content
             description
             title
             contentType
             imageId
+            count
           }
         }
       `
@@ -31,6 +33,7 @@ export default {
         .then(res => {
           const posts = res.data.data.posts;
           commit("SET_POSTS", posts);
+          commit("SET_COUNT", posts[0].count)
           commit("UPDATE_LOADING", false);
         })
         .catch(() => {
@@ -152,6 +155,9 @@ export default {
     },
     SET_PARENT_ID(state, id) {
       state.parentId = id;
+    },
+    SET_COUNT(state, count) {
+      state.count = count;
     }
   }
 };

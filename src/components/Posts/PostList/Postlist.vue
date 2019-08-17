@@ -26,9 +26,11 @@
 import { mapState } from "vuex";
 export default {
   name: "Postlist",
-  //maybe dont call here instead in views
+  data: () => ({
+    page: 1
+  }),
   mounted() {
-    this.$store.dispatch("posts/getAllPosts");
+    this.$store.dispatch("posts/getAllPosts", this.page);
   },
   computed: {
     ...mapState({ posts: state => state.posts.posts })
