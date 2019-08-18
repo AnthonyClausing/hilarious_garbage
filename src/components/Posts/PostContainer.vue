@@ -18,6 +18,6 @@ export default {
 
 <style lang="scss">
 #post-container {
-  padding-top: 40px;
+  padding-top: 55px;
 }
 </style>
