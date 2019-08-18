@@ -1,5 +1,50 @@
 <template>
   <b-col>
+    <b-col cols="12" class="text-center">
+      <span v-if="page > 2" class="pg" @click="handlePagination(page - 1)"
+        >Prev</span
+      >
+      <span
+        class="pg"
+        :class="{ active: page === 1 }"
+        @click="handlePagination(1)"
+        >First</span
+      >
+      <span v-if="page > 1" class="pg" @click="handlePagination(page - 1)">{{
+        page - 1
+      }}</span>
+      <span
+        v-if="page > 1 && page < lastPage"
+        class="pg"
+        :class="{ active: page !== 1 }"
+        @click="handlePagination()"
+        >{{ page }}</span
+      >
+      <span
+        v-if="page + 1 <= lastPage"
+        class="pg"
+        @click="handlePagination(page + 1)"
+        >{{ page + 1 }}</span
+      >
+      <span
+        v-if="page + 2 < lastPage"
+        class="pg"
+        @click="handlePagination(page + 2)"
+        >{{ page + 2 }}</span
+      >
+      <span
+        class="pg"
+        :class="{ active: page === lastPage }"
+        @click="handlePagination(lastPage)"
+        >Last</span
+      >
+      <span
+        v-if="page !== lastPage"
+        class="pg"
+        @click="handlePagination(page + 1)"
+        >Next</span
+      >
+    </b-col>
     <b-list-group class="post-list my-5 ml-4" horizontal>
       <b-list-group-item
         class="post p-0"
@@ -29,11 +74,28 @@ export default {
   data: () => ({
     page: 1
   }),
+  watch: {
+    page: function handler(newPageNum) {
+      this.$store.dispatch("posts/getAllPosts", newPageNum);
+    }
+  },
   mounted() {
     this.$store.dispatch("posts/getAllPosts", this.page);
   },
   computed: {
-    ...mapState({ posts: state => state.posts.posts })
+    ...mapState({ posts: state => state.posts.posts }),
+    lastPage() {
+      let totalPosts = this.posts[0] && this.posts[0].count;
+      return Math.ceil(totalPosts / 5);
+    }
+  },
+  methods: {
+    handlePagination(pageNum) {
+      if (this.page === pageNum || pageNum > this.lastPage) {
+        return;
+      }
+      this.page = pageNum;
+    }
   }
 };
 </script>
@@ -82,6 +144,28 @@ export default {
       border-color: white;
       cursor: pointer;
     }
+  }
+}
+.pg {
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid #474545;
+  background: #000;
+  padding: 4px 9px;
+  font-size: 1.5em;
+  margin: 0 12px 0 0;
+  border-radius: 2px;
+  cursor: pointer;
+  &.active {
+    background: #ff7dff !important;
+    &:hover {
+      color: #a36;
+    }
+  }
+  &:hover {
+    color: #aaa;
+    background: #171717;
+    border: 1px solid #5c5c5c;
   }
 }
 </style>
