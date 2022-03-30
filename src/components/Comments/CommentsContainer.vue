@@ -29,11 +29,11 @@ export default {
   props: ["comments"],
   components: {
     CommentModal,
-    SingleComment
+    SingleComment,
   },
   computed: {
     ...mapState({
-      parentId: state => state.posts.parentId
+      parentId: (state) => state.posts.parentId,
     }),
     commentTree() {
       function buildTree(elements, parentId = null) {
@@ -53,7 +53,7 @@ export default {
     },
     isLoggedIn() {
       return this.$store.getters["user/isLoggedIn"];
-    }
+    },
   },
   methods: {
     openModal() {
@@ -62,8 +62,8 @@ export default {
       } else {
         this.$bvModal.show("auth-modal");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

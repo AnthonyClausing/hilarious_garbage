@@ -8,7 +8,7 @@ export default {
     count: 0,
     comments: [],
     parentId: null,
-    loading: false
+    loading: false,
   },
   actions: {
     getAllPosts({ commit }, page) {
@@ -25,12 +25,12 @@ export default {
             count
           }
         }
-      `
+      `,
       };
       commit("UPDATE_LOADING", true);
       axios
         .post(process.env.VUE_APP_API_SECRET, requestBody)
-        .then(res => {
+        .then((res) => {
           const posts = res.data.data.posts;
           commit("SET_POSTS", posts);
           commit("SET_COUNT", posts[0].count);
@@ -68,12 +68,12 @@ export default {
             }
           }
         }
-      `
+      `,
       };
       commit("UPDATE_LOADING", true);
       axios
         .post(process.env.VUE_APP_API_SECRET, requestBody)
-        .then(res => {
+        .then((res) => {
           const post = res.data.data.post;
           commit("SET_POST", post);
           commit("SET_COMMENTS", post.comments);
@@ -92,12 +92,12 @@ export default {
             }
           }
         `,
-        variables
+        variables,
       };
       commit("UPDATE_LOADING", true);
       return axios
         .post(process.env.VUE_APP_API_SECRET, requestBody)
-        .then(res => {
+        .then((res) => {
           const id = res.data.data.createPost.id;
           commit("UPDATE_LOADING", false);
           return id;
@@ -124,12 +124,12 @@ export default {
             }
           }
         `,
-        variables: { ...variables, parentId: state.parentId }
+        variables: { ...variables, parentId: state.parentId },
       };
       commit("UPDATE_LOADING", true);
       axios
         .post(process.env.VUE_APP_API_SECRET, requestBody)
-        .then(res => {
+        .then((res) => {
           const updatedComments = res.data.data.addComment;
           commit("SET_COMMENTS", updatedComments);
           commit("UPDATE_LOADING", false);
@@ -138,7 +138,7 @@ export default {
         .catch(() => {
           commit("UPDATE_LOADING", false);
         });
-    }
+    },
   },
   mutations: {
     UPDATE_LOADING(state, bool) {
@@ -158,6 +158,6 @@ export default {
     },
     SET_COUNT(state, count) {
       state.count = count;
-    }
-  }
+    },
+  },
 };

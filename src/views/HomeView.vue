@@ -9,10 +9,10 @@
 import PostContainer from "@/components/Posts/PostContainer.vue";
 
 export default {
-  name: "home",
+  name: "HomeView",
   components: {
-    PostContainer
-  }
+    PostContainer,
+  },
 };
 </script>
 

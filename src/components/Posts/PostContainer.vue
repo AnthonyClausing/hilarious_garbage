@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import PostList from "@/components/Posts/PostList/Postlist.vue";
+import PostList from "@/components/Posts/PostList/PostList.vue";
 export default {
   name: "PostContainer",
   components: {
-    PostList
-  }
+    PostList,
+  },
 };
 </script>
 

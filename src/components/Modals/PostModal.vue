@@ -67,14 +67,14 @@ import { mapState } from "vuex";
 export default {
   name: "PostModal",
   components: {
-    Dropzone
+    Dropzone,
   },
   data: () => ({
     postData: {
       title: "",
       description: null,
       content: "",
-      contentType: "text"
+      contentType: "text",
     },
     imageFile: null,
     dropOptions: {
@@ -85,16 +85,16 @@ export default {
       maxFiles: 1,
       addRemoveLinks: true,
       dictRemoveFile: "REMOVE",
-      dictDefaultMessage: "Drop a file here"
-    }
+      dictDefaultMessage: "Drop a file here",
+    },
   }),
   computed: {
     ...mapState({
-      user: state => state.user.user
+      user: (state) => state.user.user,
     }),
     descVariable() {
       return this.postData.description ? this.postData.description : null;
-    }
+    },
   },
   methods: {
     submitPost() {
@@ -102,22 +102,22 @@ export default {
         ...this.postData,
         description: this.descVariable,
         userId: this.user.id,
-        imageId: null
+        imageId: null,
       };
       if (this.postData.contentType === "image") {
-        this.uploadImage().then(img => {
+        this.uploadImage().then((img) => {
           this.$store
             .dispatch("posts/createPost", {
               ...queryVariables,
               content: img.url,
-              imageId: img.public_id
+              imageId: img.public_id,
             })
-            .then(pId => {
+            .then((pId) => {
               this.$router.push({ path: `/posts/${pId}` });
             });
         });
       } else {
-        this.$store.dispatch("posts/createPost", queryVariables).then(pId => {
+        this.$store.dispatch("posts/createPost", queryVariables).then((pId) => {
           this.$router.push({ path: `/posts/${pId}` });
         });
       }
@@ -125,20 +125,20 @@ export default {
     uploadImage() {
       const imageParams = {
         file: this.imageFile.dataURL,
-        upload_preset: process.env.VUE_APP_POST_IMAGE_PRESET
+        upload_preset: process.env.VUE_APP_POST_IMAGE_PRESET,
       };
       const headers = {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
       };
-      axios.interceptors.response.use(res => {
+      axios.interceptors.response.use((res) => {
         res.headers = { ...res.headers, ...headers };
         return res;
       });
       return axios
         .post(process.env.VUE_APP_IMAGE_UPLOAD_URL, imageParams)
-        .then(res => {
+        .then((res) => {
           return res.data;
         });
     },
@@ -153,10 +153,10 @@ export default {
         title: "",
         description: "",
         content: "",
-        contentType: ""
+        contentType: "",
       };
       this.setImageFile(null);
-    }
-  }
+    },
+  },
 };
 </script>

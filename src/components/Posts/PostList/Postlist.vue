@@ -70,24 +70,24 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "Postlist",
+  name: "PostList",
   data: () => ({
-    page: 1
+    page: 1,
   }),
   watch: {
     page: function handler(newPageNum) {
       this.$store.dispatch("posts/getAllPosts", newPageNum);
-    }
+    },
   },
   mounted() {
     this.$store.dispatch("posts/getAllPosts", this.page);
   },
   computed: {
-    ...mapState({ posts: state => state.posts.posts }),
+    ...mapState({ posts: (state) => state.posts.posts }),
     lastPage() {
       let totalPosts = this.posts[0] && this.posts[0].count;
       return Math.ceil(totalPosts / 5);
-    }
+    },
   },
   methods: {
     handlePagination(pageNum) {
@@ -95,8 +95,8 @@ export default {
         return;
       }
       this.page = pageNum;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -61,13 +61,13 @@ export default {
     return {
       login: {
         name: "",
-        password: ""
+        password: "",
       },
       signup: {
         name: "",
         password: "",
-        email: ""
-      }
+        email: "",
+      },
     };
   },
   methods: {
@@ -80,7 +80,7 @@ export default {
       this.$store.dispatch("user/login", this.login).then(() => {
         this.$refs.authModal.hide();
       });
-    }
-  }
+    },
+  },
 };
 </script>

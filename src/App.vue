@@ -1,18 +1,18 @@
 <template>
   <b-container fluid id="app">
-    <Navbar />
+    <NavbarRow />
     <router-view />
   </b-container>
 </template>
 <script>
 // @ is an alias to /src
-import Navbar from "@/components/Navbar.vue";
+import NavbarRow from "@/components/NavbarRow.vue";
 
 export default {
   name: "app",
   components: {
-    Navbar
-  }
+    NavbarRow,
+  },
 };
 </script>
 

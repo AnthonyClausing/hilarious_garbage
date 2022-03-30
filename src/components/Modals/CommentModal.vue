@@ -28,12 +28,12 @@ import { mapState } from "vuex";
 export default {
   name: "CommentModal",
   components: {
-    Dropzone
+    Dropzone,
   },
   props: {
     parentId: {
-      default: null
-    }
+      default: null,
+    },
   },
   data: () => ({
     commentText: "",
@@ -45,17 +45,17 @@ export default {
       maxFiles: 1,
       addRemoveLinks: true,
       dictRemoveFile: "REMOVE",
-      dictDefaultMessage: "Drop a file here"
+      dictDefaultMessage: "Drop a file here",
     },
-    imageFile: null
+    imageFile: null,
   }),
   computed: {
     ...mapState({
-      user: state => state.user.user
+      user: (state) => state.user.user,
     }),
     environ() {
       return process.env;
-    }
+    },
   },
   methods: {
     modalConfirm() {
@@ -64,18 +64,18 @@ export default {
         text: this.commentText,
         userId: this.user.id,
         image: null,
-        imageId: null
+        imageId: null,
       };
       if (!this.commentText.trim().length && !this.imageFile) {
         //set some ui error state
         return;
       }
       if (this.imageFile && this.user) {
-        this.uploadImage().then(img => {
+        this.uploadImage().then((img) => {
           this.$store.dispatch("posts/createComment", {
             ...commentParams,
             image: img.url,
-            imageId: img.public_id
+            imageId: img.public_id,
           });
         });
       } else {
@@ -89,26 +89,26 @@ export default {
     uploadImage() {
       const imageParams = {
         file: this.imageFile.dataURL,
-        upload_preset: process.env.VUE_APP_COMMENT_IMAGE_PRESET
+        upload_preset: process.env.VUE_APP_COMMENT_IMAGE_PRESET,
       };
       const headers = {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
-        "Access-Control-Allow-Headers": "Content-Type, Authorization"
+        "Access-Control-Allow-Headers": "Content-Type, Authorization",
       };
-      axios.interceptors.response.use(res => {
+      axios.interceptors.response.use((res) => {
         res.headers = { ...res.headers, ...headers };
         return res;
       });
       return axios
         .post(process.env.VUE_APP_IMAGE_UPLOAD_URL, imageParams)
-        .then(res => {
+        .then((res) => {
           return res.data;
         });
     },
     setImageFile(file) {
       this.imageFile = file;
-    }
-  }
+    },
+  },
 };
 </script>

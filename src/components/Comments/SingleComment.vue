@@ -4,7 +4,7 @@
       <b-row no-gutters>
         <b-col cols="12" class="my-1">
           <div>
-            <span class="px-1" style="color: lightblue;">
+            <span class="px-1" style="color: lightblue">
               {{ comment.user.name }}
             </span>
             <span class="px-1">
@@ -56,17 +56,17 @@ export default {
   name: "SingleComment",
   props: {
     comment: {
-      type: Object
+      type: Object,
     },
     replies: {
-      type: Array
+      type: Array,
     },
     depth: {
-      type: Number
-    }
+      type: Number,
+    },
   },
   data: () => ({
-    showReplies: null
+    showReplies: null,
   }),
   computed: {
     indent() {
@@ -77,17 +77,17 @@ export default {
     },
     isLoggedIn() {
       return this.$store.getters["user/isLoggedIn"];
-    }
+    },
   },
   methods: {
-    openCommModalWithId: function(commId) {
+    openCommModalWithId: function (commId) {
       this.$store.commit("posts/SET_PARENT_ID", commId);
       this.$bvModal.show("comment-modal");
     },
     toggleChildren() {
       this.showReplies = !this.showReplies;
-    }
-  }
+    },
+  },
 };
 </script>
 

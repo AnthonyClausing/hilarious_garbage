@@ -1,30 +1,30 @@
 <template>
   <b-container fluid class="single-post">
-    <Post :post="post" />
+    <PostRow :post="post" />
     <comments-container :comments="comments" />
   </b-container>
 </template>
 
 <script>
 // @ is an alias to /src
-import Post from "@/components/Posts/Post.vue";
+import PostRow from "@/components/Posts/PostRow.vue";
 import CommentsContainer from "@/components/Comments/CommentsContainer.vue";
 import { mapState } from "vuex";
 export default {
   name: "SinglePost",
   components: {
-    Post,
-    CommentsContainer
+    PostRow,
+    CommentsContainer,
   },
   created() {
     this.$store.dispatch("posts/getSinglePost", this.$route.params.id);
   },
   computed: {
     ...mapState({
-      post: state => state.posts.post,
-      comments: state => state.posts.comments
-    })
-  }
+      post: (state) => state.posts.post,
+      comments: (state) => state.posts.comments,
+    }),
+  },
 };
 </script>
 

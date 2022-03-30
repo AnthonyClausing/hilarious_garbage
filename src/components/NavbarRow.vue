@@ -38,18 +38,18 @@ import AuthModal from "./Modals/AuthModal.vue";
 import PostModal from "./Modals/PostModal.vue";
 
 export default {
-  name: "Navbar",
+  name: "NavbarRow",
   components: {
     AuthModal,
-    PostModal
+    PostModal,
   },
   computed: {
     ...mapState({
-      user: state => state.user.user
+      user: (state) => state.user.user,
     }),
     isLoggedIn() {
       return this.$store.getters["user/isLoggedIn"];
-    }
+    },
   },
   methods: {
     logout() {
@@ -61,8 +61,8 @@ export default {
       } else {
         this.$bvModal.show("auth-modal");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

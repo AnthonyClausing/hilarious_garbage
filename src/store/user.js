@@ -6,7 +6,7 @@ export default {
     user: JSON.parse(localStorage.getItem("user")) || null,
     error: null,
     loading: false,
-    token: localStorage.getItem("token") || ""
+    token: localStorage.getItem("token") || "",
   },
   actions: {
     login({ commit }, payload) {
@@ -23,12 +23,12 @@ export default {
               name
             }
           }
-        }`
+        }`,
       };
       commit("UPDATE_LOADING", true);
       axios
         .post(process.env.VUE_APP_API_SECRET, requestBody)
-        .then(res => {
+        .then((res) => {
           const user = res.data.data.login.user;
           const token = res.data.data.login.token;
           localStorage.setItem("token", token);
@@ -58,12 +58,12 @@ export default {
               name
             }
           }
-        }`
+        }`,
       };
       commit("UPDATE_LOADING", true);
       axios
         .post(process.env.VUE_APP_API_SECRET, requestBody)
-        .then(res => {
+        .then((res) => {
           const userInfo = res.data.data.signup.user;
           const token = res.data.data.login.token;
           localStorage.setItem("token", token);
@@ -80,14 +80,14 @@ export default {
         });
     },
     logout({ commit }) {
-      return new Promise(resolve => {
+      return new Promise((resolve) => {
         commit("LOG_OUT");
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         delete axios.defaults.headers.common["Authorization"];
         resolve();
       });
-    }
+    },
   },
   mutations: {
     UPDATE_LOADING(state, bool) {
@@ -100,11 +100,11 @@ export default {
     LOG_OUT(state) {
       state.token = "";
       state.user = null;
-    }
+    },
   },
   getters: {
     isLoggedIn(state) {
       return !!state.token && !!state.user;
-    }
-  }
+    },
+  },
 };

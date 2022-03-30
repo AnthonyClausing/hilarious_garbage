@@ -38,25 +38,25 @@
 
 <script>
 export default {
-  name: "Post",
+  name: "PostRow",
   props: ["post"],
   data: () => ({
-    imageHeight: null
+    imageHeight: null,
   }),
   methods: {
     setHeight(event) {
       const natHeight = event.target.naturalHeight;
       this.imageHeight = natHeight > 1000 ? "50%" : natHeight;
-    }
+    },
   },
   computed: {
     imageStyle() {
       return { height: this.imageHeight };
-    }
+    },
   },
   mounted() {
     document.title = this.post.title;
-  }
+  },
 };
 </script>
 

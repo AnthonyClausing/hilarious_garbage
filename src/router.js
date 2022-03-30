@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
-import Home from "./views/Home.vue";
-import About from "./views/About.vue";
+import HomeView from "./views/HomeView.vue";
+import AboutView from "./views/AboutView.vue";
 import SinglePost from "./views/SinglePost.vue";
 Vue.use(Router);
 
@@ -11,17 +11,17 @@ export default new Router({
     {
       path: "/",
       name: "home",
-      component: Home
+      component: HomeView,
     },
     {
       path: "/user/:id",
       name: "user",
-      component: About
+      component: AboutView,
     },
     {
       path: "/posts/:id",
       name: "single-post",
-      component: SinglePost
-    }
-  ]
+      component: SinglePost,
+    },
+  ],
 });
